@@ -13,7 +13,7 @@ const GalleryView = () => {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-red-800 mb-4">Gallery</h2>
+      <h2 className="text-2xl font-bold text-red-800 mb-4">📷 Gallery</h2>
       {events.map(ev => (
         <div key={ev._id} className="bg-white p-4 rounded border shadow">
           <h3 className="font-bold text-lg text-red-900 mb-2">{ev.eventTitle}</h3>
