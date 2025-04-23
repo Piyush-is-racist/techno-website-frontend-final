@@ -83,15 +83,10 @@ const Gallery = () => {
             />
           ))}
         </div>
-
-        <button
-          type="button"
-          onClick={addLinkField}
-          className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
-        >
-          ➕ Add Link
         </button>
-
+          <button  type="button" onClick={addLinkField} className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow">
+         ➕ Add Link
+        </button>
         <button
           type="submit"
           className="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900"
