@@ -137,7 +137,7 @@ const Attendance = () => {
             onClick={saveChanges}
             className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow"
           >
-            💾 Save Changes
+            Save Changes
           </button>
 
           <a
@@ -146,7 +146,7 @@ const Attendance = () => {
             rel="noopener noreferrer"
             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow"
           >
-            📄 Open Google Sheet
+            Open Google Sheet
           </a>
         </div>
       </div>
