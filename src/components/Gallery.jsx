@@ -83,9 +83,11 @@ const Gallery = () => {
             />
           ))}
         </div>
-        </button>
-          <button  type="button" onClick={addLinkField} className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow">
-         ➕ Add Link
+
+        <div className="mt-6 flex items-center gap-4">
+
+        <button type="button" onClick={addLinkField} className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow">
+        ➕ Add Link
         </button>
         <button
           type="submit"
@@ -93,6 +95,7 @@ const Gallery = () => {
         >
           Save Event
         </button>
+        </div>
       </form>
 
       <h3 className="text-xl font-semibold text-red-800 mb-2">🖼️ Gallery Events</h3>
