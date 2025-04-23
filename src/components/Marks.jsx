@@ -131,7 +131,7 @@ const Marks = () => {
 
       <div className="mt-6 flex items-center gap-4">
         <button onClick={saveChanges} className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow">
-          💾 Save Changes
+          Save Changes
         </button>
         <a
             href="https://docs.google.com/spreadsheets/d/1ktIvhH1NSAYkjrd6jWOnY8XmeJPuJ2yguVS1KEbpaQI/edit?usp=sharing"
@@ -139,7 +139,7 @@ const Marks = () => {
             rel="noopener noreferrer"
             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow"
           >
-            📄 Open Google Sheet
+            Open Google Sheet
           </a>
       </div>
     </div>
