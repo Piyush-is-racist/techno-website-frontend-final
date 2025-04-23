@@ -35,7 +35,7 @@ function Sidebar({ isOpen, activePage, setActivePage }) {
     { label: "Classworks", value: "classworks" },
     { label: "Homeworks", value: "homeworks" },
     { label: "Attendance", value: "attendance" },
-    { label: "Add Marks", value: "marks" },
+    { label: "Marks", value: "marks" },
     { label: "Fees", value: "fees" },
     { label: "Gallery", value: "gallery" },
   ];
