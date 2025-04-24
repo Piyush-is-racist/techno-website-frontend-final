@@ -135,7 +135,7 @@ const Homework = () => {
         </button>
       </div>
 
-      <div className="mb-6">
+     <div className="mb-6">
         <label className="mr-2 font-medium text-sm">Filter by Year:</label>
         <select
           value={filterYear}
@@ -144,7 +144,9 @@ const Homework = () => {
         >
           <option value="All">All</option>
           {[1, 2, 3, 4].map((year) => (
-            <option key={year} value={year}>{year} Year</option>
+            <option key={year} value={year}>
+              {year} Year
+            </option>
           ))}
         </select>
       </div>
