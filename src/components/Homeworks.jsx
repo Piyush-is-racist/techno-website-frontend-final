@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const API = "https://techno-backend-76p3.onrender.com/api/homework";
 
-const Homework = () => {
+const Classwork = () => {
   const [notices, setNotices] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [selected, setSelected] = useState([]);
@@ -19,6 +19,11 @@ const Homework = () => {
     const json = await res.json();
     if (json.success) {
       setNotices(json.data);
+      setFiltered(
+        filterYear === "All"
+          ? json.data
+          : json.data.filter(n => n.yearGroup?.toString() === filterYear.toString())
+      );
     }
   };
 
@@ -27,11 +32,11 @@ const Homework = () => {
   }, []);
 
   useEffect(() => {
-    if (filterYear === "All") {
-      setFiltered(notices);
-    } else {
-      setFiltered(notices.filter(n => n.yearGroup === parseInt(filterYear)));
-    }
+    setFiltered(
+      filterYear === "All"
+        ? notices
+        : notices.filter(n => n.yearGroup?.toString() === filterYear.toString())
+    );
   }, [notices, filterYear]);
 
   const handleInput = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -75,7 +80,7 @@ const Homework = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-red-800 mb-4">📘 Homework</h2>
+      <h2 className="text-2xl font-bold text-red-800 mb-4">📝 Homework</h2>
 
       <form
         onSubmit={handleSubmit}
@@ -121,7 +126,7 @@ const Homework = () => {
           type="submit"
           className="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900"
         >
-          Add Homework
+          Add Classwork
         </button>
       </form>
 
@@ -135,7 +140,7 @@ const Homework = () => {
         </button>
       </div>
 
-     <div className="mb-6">
+      <div className="mb-6">
         <label className="mr-2 font-medium text-sm">Filter by Year:</label>
         <select
           value={filterYear}
