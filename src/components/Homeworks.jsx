@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 
 const API = "https://techno-backend-76p3.onrender.com/api/homework";
 
-const Classwork = () => {
-  const [notices, setNotices] = useState([]);
+const Homework = () => {
+  const [homeworkList, setHomeworkList] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [selected, setSelected] = useState([]);
   const [form, setForm] = useState({
@@ -14,35 +14,36 @@ const Classwork = () => {
   });
   const [filterYear, setFilterYear] = useState("All");
 
-  const fetchNotices = async () => {
+  const fetchHomework = async () => {
     const res = await fetch(API);
     const json = await res.json();
     if (json.success) {
-      setNotices(json.data);
+      setHomeworkList(json.data);
       setFiltered(
         filterYear === "All"
           ? json.data
-          : json.data.filter(n => n.yearGroup?.toString() === filterYear.toString())
+          : json.data.filter(h => h.yearGroup?.toString() === filterYear.toString())
       );
     }
   };
 
   useEffect(() => {
-    fetchNotices();
+    fetchHomework();
   }, []);
 
   useEffect(() => {
     setFiltered(
       filterYear === "All"
-        ? notices
-        : notices.filter(n => n.yearGroup?.toString() === filterYear.toString())
+        ? homeworkList
+        : homeworkList.filter(h => h.yearGroup?.toString() === filterYear.toString())
     );
-  }, [notices, filterYear]);
+  }, [homeworkList, filterYear]);
 
   const handleInput = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.title || !form.description || !form.yearGroup) return alert("All fields including year are required.");
+    if (!form.title || !form.description || !form.yearGroup)
+      return alert("All fields including year are required.");
 
     try {
       const res = await fetch(API, {
@@ -54,7 +55,7 @@ const Classwork = () => {
       const json = await res.json();
       if (json.success) {
         setForm({ title: "", description: "", fileURL: "", yearGroup: "" });
-        fetchNotices();
+        fetchHomework();
       } else {
         alert("Failed to add homework.");
       }
@@ -75,12 +76,12 @@ const Classwork = () => {
       await fetch(`${API}/${id}`, { method: "DELETE" });
     }
     setSelected([]);
-    fetchNotices();
+    fetchHomework();
   };
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-red-800 mb-4">📝 Homework</h2>
+      <h2 className="text-2xl font-bold text-red-800 mb-4">📚 Homework</h2>
 
       <form
         onSubmit={handleSubmit}
@@ -126,7 +127,7 @@ const Classwork = () => {
           type="submit"
           className="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900"
         >
-          Add Classwork
+          Add Homework
         </button>
       </form>
 
@@ -160,23 +161,23 @@ const Classwork = () => {
         <p>No homework found.</p>
       ) : (
         <ul className="space-y-4">
-          {filtered.map((notice) => (
+          {filtered.map((hw) => (
             <li
-              key={notice._id}
+              key={hw._id}
               className="bg-white p-4 border rounded flex justify-between items-start"
             >
               <div>
                 <input
                   type="checkbox"
                   className="mr-2"
-                  checked={selected.includes(notice._id)}
-                  onChange={() => handleSelect(notice._id)}
+                  checked={selected.includes(hw._id)}
+                  onChange={() => handleSelect(hw._id)}
                 />
-                <span className="font-bold text-lg text-red-900">{notice.title}</span>
-                <p className="text-sm text-gray-700">{notice.description}</p>
-                {notice.fileURL && (
+                <span className="font-bold text-lg text-red-900">{hw.title}</span>
+                <p className="text-sm text-gray-700">{hw.description}</p>
+                {hw.fileURL && (
                   <a
-                    href={notice.fileURL}
+                    href={hw.fileURL}
                     target="_blank"
                     rel="noreferrer"
                     className="text-blue-600 underline text-sm"
@@ -185,7 +186,7 @@ const Classwork = () => {
                   </a>
                 )}
                 <p className="text-xs text-gray-500 mt-1">
-                  {new Date(notice.date).toLocaleString()}
+                  {new Date(hw.date).toLocaleString()}
                 </p>
               </div>
             </li>
